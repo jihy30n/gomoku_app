@@ -2,19 +2,19 @@ server:
   port: 8080
 spring:
   datasource:
-    url: jdbc:mysql://test.c0xvfvhlcqd9.ap-northeast-2.rds.amazonaws.com:3306
-    username: ENC(Y5WQnW/9QvoSM1YyDgHn6gz0X/I16yPDCAw71ukSWnkhrGAQSUCrXZANVFshlOKv)
-    password: ENC(Fq7/78A9WJnBhCCQQdADY2eTTPOwU2J8euXg5P3NOQwNZFfXUXV89A3DNFK6v9xA)
+    url: jdbc:mysql://test.c0xvfvhlcqd9.ap-northeast-2.rds.amazonaws.com:3306/gomoku
+    username: ENC(P6wCfe/ci58/KS2Bd+9ulczXTXno+OdXl0tsJ6ZQr4v3/GVm9ECIpJR+e38Ein1X)
+    password: ENC(jNt1VDpiz8If7Lz2IKxWqrE6QXNvsCq8mEcFZnYOOkn/EZ1Ns80DVG2Og1Qy/+C1)
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
-    show-sql: false
+    show-sql: true
     hibernate:
       ddl-auto: update
 
 
 jwt:
   secretKey:
-    ENC(UNPezTos9J3xXq8EmXbwNIcu5WHSczEGsPb7m4vR3Ps7r3UVWkDMzXVLiX7mh7jdQwlUTlfANQUo0CI9Mubk3h1YQfkwhawDsDcur)
+    ENC(JwjBqLasnvgojaxfKX+qwIrH8GtzDY21Ueo8g/l7rZ0YpISu/kykz2uSdYBh/1NLNvng62WRLAEC6op+GsBINWKVOajiaPC2jIjsVwLLC5P56McYx4JPwHS6T0FeTzg1)
   accessExpiration: 1800000 #30분 1800000
   refreshExpiration: 604800000 #1주 604800000
 
