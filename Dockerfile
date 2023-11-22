@@ -3,7 +3,7 @@ WORKDIR /app
 COPY . /app
 RUN chmod +x ./gradlew
 RUN microdnf install -y findutils
-RUN ./gradlew bootjar
+RUN ./gradlew bootJar
 ENTRYPOINT ["sh", "-c", "java ${JAVA_OPTS} -jar /app/build/libs/gomoku-0.0.1-SNAPSHOT.jar"]
 
 # 1. Jasypt 를 적용한 프로젝트
