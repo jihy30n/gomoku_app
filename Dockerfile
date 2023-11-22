@@ -13,7 +13,7 @@ RUN chmod +x ./gradlew && ./gradlew clean bootJar
 
 # 생성한 jar 파일을 실행함.
 FROM openjdk:18-jdk
-WORKDIR /tmp
-COPY --from=build /tmp/build/libs/gomoku.jar /tmp/gomoku.jar
-ENTRYPOINT ["sh", "-c", "java ${JAVA_OPTS} -jar /tmp/gomoku.jar"]
+WORKDIR /app
+COPY --from=build /tmp/build/libs/gomoku.jar /app/gomoku.jar
+ENTRYPOINT ["sh", "-c", "java ${JAVA_OPTS} -jar /app/gomoku.jar"]
 
