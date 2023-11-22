@@ -6,13 +6,13 @@
 
 # 1. Jasypt 를 적용한 프로젝트
 # 필요한 종속 항목 설치 및 jar 파일 생성
-FROM openjdk:18-jdk AS build
+FROM jdk-18.0.2.1 AS build
 WORKDIR /tmp
 COPY . /tmp
 RUN chmod +x ./gradlew && ./gradlew clean bootJar
 
 # 생성한 jar 파일을 실행함.
-FROM openjdk:18-jdk
+FROM jdk-18.0.2.1
 WORKDIR /app
 COPY --from=build /tmp/build/libs/gomoku.jar /app/gomoku.jar
 ENTRYPOINT ["sh", "-c", "java ${JAVA_OPTS} -jar /app/gomoku.jar"]
