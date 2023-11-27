@@ -15,6 +15,7 @@ public class GomokuApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(GomokuApplication.class, args);
+		System.out.println("done");
 	}
 
 	@PersistenceContext
