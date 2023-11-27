@@ -17,13 +17,20 @@
 #COPY --from=build /app/build/libs/gomoku.jar /app/gomoku.jar
 #ENTRYPOINT ["sh", "-c", "java ${JAVA_OPTS} -jar /app/build/libs/gomoku-0.0.1-SNAPSHOT.jar"]
 
-FROM jdk-18.0.2.1 AS build
+# Build stage
+FROM openjdk:18.0.2.1 AS build
 WORKDIR /app
 COPY . /app
 RUN chmod +x ./gradlew && ./gradlew clean bootJar
 
-# 생성한 jar 파일을 실행함.
-FROM jdk-18.0.2.1 AS runtime
+# Runtime stage
+FROM openjdk:18.0.2.1 AS runtime
 WORKDIR /app
 COPY --from=build /app/build/libs/gomoku.jar /app/gomoku.jar
+
+# Set JAVA_HOME and update PATH
+ENV JAVA_HOME=/usr/local/openjdk-18.0.2.1
+ENV PATH="$JAVA_HOME/bin:${PATH}"
+
 ENTRYPOINT ["sh", "-c", "java ${JAVA_OPTS} -jar /app/gomoku.jar"]
+
