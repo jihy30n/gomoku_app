@@ -15,7 +15,7 @@ RUN chmod +x ./gradlew && ./gradlew clean bootJar
 
 FROM openjdk:17-jdk
 WORKDIR /app
-COPY --from=build /app/build/libs/gomoku.jar /app/gomoku.jar
+COPY --from=build /app/build/libs/gomoku-0.0.1-SNAPSHOT.jar /app/gomoku.jar
 ENTRYPOINT ["sh", "-c", "java ${JAVA_OPTS} -jar /app/gomoku.jar"]
 
 
