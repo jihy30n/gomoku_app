@@ -9,7 +9,7 @@
 FROM openjdk:17-jdk AS build
 WORKDIR /tmp
 COPY . /tmp
-RUN apt-get update && apt-get install -y findutils
+RUN yum update && yum install -y findutils
 RUN chmod +x ./gradlew && ./gradlew clean bootJar
 
 FROM openjdk:17-jdk
