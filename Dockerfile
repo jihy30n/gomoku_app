@@ -26,7 +26,7 @@ COPY . /tmp
 ENV JAVA_HOME /usr/lib/jvm/jdk-17-oracle-x64
 
 # Build the application
-RUN chmod +x ./gradlew && JAVA_HOME=$JAVA_HOME ./gradlew clean bootJar
+RUN chmod +x ./gradlew && ./gradlew clean bootJar
 
 # Final Stage
 FROM openjdk:17-jdk
