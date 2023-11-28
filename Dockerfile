@@ -18,18 +18,18 @@
 #ENTRYPOINT ["sh", "-c", "java ${JAVA_OPTS} -jar /app/build/libs/gomoku-0.0.1-SNAPSHOT.jar"]
 
 # Build stage
-FROM openjdk:18.0.2.1 AS build
+FROM jdk-17 AS build
 WORKDIR /app
 COPY . /app
 RUN chmod +x ./gradlew && ./gradlew clean bootJar
 
 # Runtime stage
-FROM openjdk:18.0.2.1 AS runtime
+FROM jdk-17 AS runtime
 WORKDIR /app
 COPY --from=build /app/build/libs/gomoku.jar /app/gomoku.jar
 
 # Set JAVA_HOME and update PATH
-ENV JAVA_HOME=/usr/local/openjdk-18.0.2.1
+ENV JAVA_HOME=/usr/local/jdk-17
 ENV PATH="$JAVA_HOME/bin:${PATH}"
 
 ENTRYPOINT ["sh", "-c", "java ${JAVA_OPTS} -jar /app/gomoku.jar"]
