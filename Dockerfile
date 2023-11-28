@@ -21,7 +21,8 @@
 FROM amazonlinux:2 AS build
 WORKDIR /tmp
 COPY . /tmp
-RUN yum update -y && yum install -y java-17-openjdk findutils
+
+# Build the application
 RUN chmod +x ./gradlew && ./gradlew clean bootJar
 
 # Final Stage
