@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class GameController {
 
-    @PostMapping("/test/")
+    @PostMapping("/test")
     public ResponseEntity<String> receiveJson(@RequestBody LoginRequestDto requestDto) {
         String id = requestDto.getUserEmail();
         String password = requestDto.getPassword();
