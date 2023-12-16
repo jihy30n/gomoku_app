@@ -10,7 +10,7 @@
 FROM openjdk:11-jdk AS build
 WORKDIR /app
 COPY . /app
-RUN microdnf update && microdnf install -y findutils
+RUN yum update && yum install -y findutils
 RUN chmod +x ./gradlew && ./gradlew clean bootJar
 
 FROM openjdk:11-jdk
