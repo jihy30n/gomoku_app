@@ -6,11 +6,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/game")
+//@RequestMapping("/game")
 @RequiredArgsConstructor
 public class GameController {
 
-    @PostMapping("/test")
+    @PostMapping("/game/test")
     public ResponseEntity<String> receiveJson(@RequestBody LoginRequestDto requestDto) {
         String id = requestDto.getUserEmail();
         String password = requestDto.getPassword();
