@@ -39,4 +39,5 @@ public class PostController {
         }
         return postService.searchOfPostInTitleAndText(key,page);
     }
+
 }
