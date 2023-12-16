@@ -8,12 +8,15 @@ class JasyptConfigAESTest {
 
     @Test
     void stringEncryptor() {
+        String url = "jdbc:mysql://test.c0xvfvhlcqd9.ap-northeast-2.rds.amazonaws.com:3306/gomoku";
         String tokenkey = "moullekeyincode256abcd1234efgh56ahdmffodkaghzhem";
         String username = "admin";
         String password = "jihyeon1234";
-        System.out.println(jasyptEncoding(tokenkey));
+        System.out.println(jasyptEncoding(url));
         System.out.println(jasyptEncoding(username));
         System.out.println(jasyptEncoding(password));
+        System.out.println(jasyptEncoding(tokenkey));
+
     }
 
     public String jasyptEncoding(String value) {
