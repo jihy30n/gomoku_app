@@ -48,7 +48,6 @@ public class UserService {
         if (userRepository.existsByUserEmail(signupRequestDto.getUserEmail())) {
             throw new DuplicateException(ErrorCode.DUPLICATE_EMAIL.getMessage(), ErrorCode.DUPLICATE_EMAIL);
         }
-
         UserEntity userEntity = new UserEntity().builder()
                 .uid(UUID.randomUUID())
                 .userName(signupRequestDto.getUserName())
@@ -63,12 +62,12 @@ public class UserService {
                 .totalWin(0)
                 .build();
 
+        userRepository.save(userEntity);
+
         String AT = jwtTokenProvider.createAT(userEntity);
         String RT = jwtTokenProvider.createRT(userEntity);
 
         userEntity.setRefreshToken(RT);
-
-        userRepository.save(userEntity);
 
         response.setHeader("Authorization","Bearer " + AT);
         response.setHeader("RefreshToken","Bearer "+ RT);
@@ -93,7 +92,6 @@ public class UserService {
         response.setHeader("Authorization","Bearer " + jwtTokenProvider.createAT(userEntity));
         return ResponseEntity.ok("good,check header");
     }
-
 
     //===========UserInfo 관련=======================
 
