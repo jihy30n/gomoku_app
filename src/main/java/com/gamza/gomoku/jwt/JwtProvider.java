@@ -41,8 +41,8 @@ public class JwtProvider {
     public String createToken(UserEntity userEntity, long tokenTime){
 
         Claims claims = Jwts.claims().setSubject(userEntity.getUserEmail());
-        claims.put("roles",userEntity.getUserRole().toString());
-        claims.put("tier",userEntity.getTier().toString());
+        //claims.put("roles",userEntity.getUserRole().toString());
+        //claims.put("tier",userEntity.getTier().toString());
         claims.put("userName",userEntity.getUserName());
 
         Date date = new Date();

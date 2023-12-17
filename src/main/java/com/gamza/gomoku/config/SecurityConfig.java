@@ -28,6 +28,7 @@ public class SecurityConfig {
                 .authorizeRequests()
                 //권한 필요한 api들 여기에 넣기
                 .antMatchers("/post/**").permitAll()
+                .antMatchers("/auth/**").permitAll()
                 .antMatchers("/game/test").permitAll()
                 //나머지 요청에서는 제한없이 호출
                 .anyRequest().permitAll()
