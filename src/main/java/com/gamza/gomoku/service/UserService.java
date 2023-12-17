@@ -28,8 +28,8 @@ public class UserService {
     private final JwtProvider jwtTokenProvider;
 
     public ResponseEntity<String> login(LoginRequestDto loginRequestDto, HttpServletResponse response){
-        UserEntity userEntity = userRepository.findByUserEmail(loginRequestDto.getUserEmail()).orElseThrow(()->{
-            throw new UnAuthorizedException(ErrorCode.INVALID_ACCESS.getMessage(),ErrorCode.INVALID_ACCESS);});
+        UserEntity userEntity = userRepository.findByUserEmail(loginRequestDto.getUserEmail())
+                .orElseThrow(()-> new UnAuthorizedException(ErrorCode.INVALID_ACCESS.getMessage(), ErrorCode.INVALID_ACCESS));
 
         if ( !passwordEncoder.matches(loginRequestDto.getPassword(),userEntity.getPassword()) ) {
             throw new UnAuthorizedException(ErrorCode.INVALID_ACCESS.getMessage(),ErrorCode.INVALID_ACCESS);

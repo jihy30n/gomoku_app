@@ -46,11 +46,9 @@ public class JwtAuthorizationTokenFilter extends OncePerRequestFilter {
             return;
             // 위의 링크에 걸리지 않고 토큰이 없는 경우 에러처리
         }
-
         try {
             if ( jwtTokenProvider.validateToken(accessToken) ) {
                 this.setAuthentication(accessToken);
-
             }
         } catch (MalformedJwtException e) {
             log.info("103 error");
@@ -86,7 +84,6 @@ public class JwtAuthorizationTokenFilter extends OncePerRequestFilter {
 
         filterChain.doFilter(request,response);
     }
-
     private void setAuthentication(String token) {
         //토큰에서 유저정보 빼기
         Authentication authentication = jwtTokenProvider.getAuthentication(token);

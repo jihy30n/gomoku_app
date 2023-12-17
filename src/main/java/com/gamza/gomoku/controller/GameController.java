@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
 
 @RestController
-@RequestMapping("/game")
+//@RequestMapping("/game")
 @RequiredArgsConstructor
 public class GameController {
     private final UserService userService;
@@ -23,7 +23,7 @@ public class GameController {
 //        return userService.login(loginRequestDto, response);
 //
 //    }
-    @PostMapping("/login")
+    @PostMapping("/game/login")
     public ResponseEntity<String> receiveJson(@RequestBody LoginRequestDto loginRequestDto, HttpServletResponse response
     ) {
         String userEmail = loginRequestDto.getUserEmail();
