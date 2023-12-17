@@ -29,7 +29,7 @@ public class SecurityConfig {
                 //권한 필요한 api들 여기에 넣기
                 .antMatchers("/post/**").permitAll()
                 .antMatchers("/auth/**").permitAll()
-                .antMatchers("/game/test").permitAll()
+                .antMatchers("/game/login").permitAll()
                 //나머지 요청에서는 제한없이 호출
                 .anyRequest().permitAll()
                 .and()
