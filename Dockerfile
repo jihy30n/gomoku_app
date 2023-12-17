@@ -10,13 +10,14 @@
 FROM openjdk:11-jdk AS build
 WORKDIR /app
 COPY . /app
-RUN apt-get update && apt-get install -y findutils
+#RUN apt-get update && apt-get install -y findutils
 RUN chmod +x ./gradlew && ./gradlew clean bootJar
 
 FROM openjdk:11-jdk
 WORKDIR /app
 COPY --from=build /app/build/libs/gomoku-0.0.1-SNAPSHOT.jar /app/gomoku.jar
 ENTRYPOINT ["sh", "-c", "java ${JAVA_OPTS} -jar /app/gomoku.jar"]
+
 
 
 
