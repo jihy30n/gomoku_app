@@ -6,16 +6,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-//@RequestMapping("/game")
+@RequestMapping("/game")
 @RequiredArgsConstructor
 public class GameController {
 
-    @PostMapping("/game/test")
+    @PostMapping("/login")
     public ResponseEntity<String> receiveJson(@RequestBody LoginRequestDto requestDto) {
-        String id = requestDto.getUserEmail();
+        String userEmail = requestDto.getUserEmail();
         String password = requestDto.getPassword();
-        System.out.println("Received JSON: " + id + password);
         return ResponseEntity.ok("JSON received successfully");
     }
-
 }

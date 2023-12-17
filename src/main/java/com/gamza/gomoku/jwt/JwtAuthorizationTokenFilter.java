@@ -43,7 +43,8 @@ public class JwtAuthorizationTokenFilter extends OncePerRequestFilter {
         if (accessToken == null || accessToken.trim().isEmpty()) {
             errorCode = ErrorJwtCode.EMPTY_TOKEN;
             setResponse(response,errorCode);
-            return; // 위의 링크에 걸리지 않고 토큰이 없는 경우 에러처리
+            return;
+            // 위의 링크에 걸리지 않고 토큰이 없는 경우 에러처리
         }
 
         try {
