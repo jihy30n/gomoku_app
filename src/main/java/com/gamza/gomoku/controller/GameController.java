@@ -15,6 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 @RequiredArgsConstructor
 public class GameController {
     private final UserService userService;
+    private final JwtProvider jwtProvider;
+
+
 
 
     //    @PostMapping("/login")
@@ -35,15 +38,16 @@ public class GameController {
 
     }
 
-//    @PostMapping("/game/end")
-//    public ResponseEntity<String> receiveGameInfo(@RequestBody GameDto gameDto, HttpServletResponse response) {
-//        String token = gameDto.getToken();
-//        String isWin = gameDto.getIsWin();
-//
-////        String userEmail = JwtProvider.getUserEmailFromToken(token);
-//
-//        userService.processGameData(userEmail, isWin);
-//
-//        return ResponseEntity.ok("게임종료값 받음");
-//    }
+    @PostMapping("/game/end")
+    public ResponseEntity<String> receiveGameInfo(@RequestBody GameDto gameDto, HttpServletResponse response) {
+
+        String token = gameDto.getToken();
+        String isWin = gameDto.getIsWin();
+
+        String userEmail = jwtProvider.getUserEmailFromToken(token);
+
+        userService.processGameData(userEmail, isWin);
+
+        return ResponseEntity.ok("게임종료값 받음");
+    }
 }
