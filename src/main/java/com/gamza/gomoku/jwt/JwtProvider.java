@@ -22,7 +22,7 @@ import java.util.Date;
 public class JwtProvider {
     private final CustomUserDetailService customUserDetailService;
     @Value("${jwt.secretKey}")
-    private static String secretKey;
+    private String secretKey;
 
     @Value("${jwt.accessExpiration}")
     private long ATExpireTime;
@@ -69,7 +69,7 @@ public class JwtProvider {
         return null;
     }
 
-    public static String getUserEmailFromToken(String token) {
+    public String getUserEmailFromToken(String token) {
         Claims claims = Jwts.parser()
                 .setSigningKey(secretKey)
                 .parseClaimsJws(token)
