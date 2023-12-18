@@ -1,5 +1,6 @@
 package com.gamza.gomoku.service;
 
+import com.gamza.gomoku.dto.game.GameDto;
 import com.gamza.gomoku.dto.user.*;
 import com.gamza.gomoku.entity.UserEntity;
 import com.gamza.gomoku.enumcustom.Tier;
@@ -43,6 +44,25 @@ public class UserService {
 
         return ResponseEntity.ok("로그인 성공");
     }
+
+    @Transactional
+    public void processGameData(String userEmail, String isWin) {
+        UserEntity userEntity = userRepository.findByUserEmail(userEmail)
+                .orElseThrow(() -> new NotFoundException("User not found", ErrorCode.NOT_FOUND));
+
+        userEntity.setTotalPlay(userEntity.getTotalPlay() + 1);
+
+        if ("true".equals(isWin)) {
+            // 승리한 경우에 대한 로직 추가
+            userEntity.setTotalWin(userEntity.getTotalWin() + 1);
+        } else {
+            // 패배한 경우에 대한 로직 추가
+        }
+
+        // 업데이트된 정보를 저장
+        userRepository.save(userEntity);
+    }
+
     @Transactional
     public ResponseEntity<String> signUp(SignupRequestDto signupRequestDto, HttpServletResponse response){
         if (userRepository.existsByUserEmail(signupRequestDto.getUserEmail())) {

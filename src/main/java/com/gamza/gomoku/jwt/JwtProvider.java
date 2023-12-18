@@ -22,13 +22,14 @@ import java.util.Date;
 public class JwtProvider {
     private final CustomUserDetailService customUserDetailService;
     @Value("${jwt.secretKey}")
-    private String secretKey;
+    private static String secretKey;
 
     @Value("${jwt.accessExpiration}")
     private long ATExpireTime;
 
     @Value("${jwt.refreshExpiration}")
     private long RTExpireTime ;
+
 
     public String createAT(UserEntity userEntity){
         return this.createToken(userEntity,ATExpireTime);
@@ -67,6 +68,16 @@ public class JwtProvider {
         }
         return null;
     }
+
+    public static String getUserEmailFromToken(String token) {
+        Claims claims = Jwts.parser()
+                .setSigningKey(secretKey)
+                .parseClaimsJws(token)
+                .getBody();
+
+        return claims.getSubject();
+    }
+
 
     public boolean validateToken(String token) {
         try {
