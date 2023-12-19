@@ -4,7 +4,7 @@ import lombok.Getter;
 
 @Getter
 public class GameDto {
-    private String userMail;
+    private String userEmail;
     private String outcome;
 
 }
