@@ -22,7 +22,7 @@ public class UserController {
     public ResponseEntity<String> signUp(@RequestBody SignupRequestDto signupRequestDto, HttpServletResponse response) {
         return userService.signUp(signupRequestDto,response);
     }
-    @GetMapping("/auth/login")
+    @PostMapping("/auth/login")
     public ResponseEntity<String> login(@RequestBody LoginRequestDto loginRequestDto, HttpServletResponse response) {
         return userService.login(loginRequestDto, response);
     }
