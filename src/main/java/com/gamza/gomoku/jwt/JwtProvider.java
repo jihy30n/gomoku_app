@@ -57,17 +57,20 @@ public class JwtProvider {
     }
 
     public String resolveAT(HttpServletRequest request) {
+        String authorizationHeader = request.getHeader("Authorization");
+        System.out.println("Authorization Header: " + authorizationHeader);
         if (request.getHeader("Authorization") != null){
             return request.getHeader("Authorization").substring(7);
         }
         return null;
     }
     public String resolveRT(HttpServletRequest request) {
-        if (request.getHeader("RefreshToken") != null){
-            return request.getHeader("RefreshToken").substring(7);
+        if (request.getHeader("Authorization") != null) {
+            return request.getHeader("Authorization").substring(7);
         }
         return null;
     }
+
 
     public String getUserEmailFromToken(String token) {
         Claims claims = Jwts.parser()

@@ -34,6 +34,7 @@ public class UserController {
     public SimpleUserInfoResponseDto simpleUserInfo(HttpServletRequest request) {
         return userService.getSimpleUserInfo(request);
     }
+
     @GetMapping("/user/info")
     public UserInfoResponseDto userInfo(HttpServletRequest request) {
         return userService.getUserInfo(request);
