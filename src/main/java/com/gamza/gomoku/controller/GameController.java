@@ -41,12 +41,12 @@ public class GameController {
     @PostMapping("/game/end")
     public ResponseEntity<String> receiveGameInfo(@RequestBody GameDto gameDto, HttpServletResponse response) {
 
-        String token = gameDto.getToken();
-        String isWin = gameDto.getIsWin();
+        String accessToken = gameDto.getAccessToken();
+        String outcome = gameDto.getOutcome();
 
-        String userEmail = jwtProvider.getUserEmailFromToken(token);
+        String userEmail = jwtProvider.getUserEmailFromToken(accessToken);
 
-        userService.processGameData(userEmail, isWin);
+        userService.processGameData(userEmail, outcome);
 
         return ResponseEntity.ok("게임종료값 받음");
     }

@@ -46,20 +46,17 @@ public class UserService {
     }
 
     @Transactional
-    public void processGameData(String userEmail, String isWin) {
+    public void processGameData(String userEmail, String outcome) {
         UserEntity userEntity = userRepository.findByUserEmail(userEmail)
                 .orElseThrow(() -> new NotFoundException("User not found", ErrorCode.NOT_FOUND));
 
         userEntity.setTotalPlay(userEntity.getTotalPlay() + 1);
 
-        if ("true".equals(isWin)) {
-            // 승리한 경우에 대한 로직 추가
+        if ("Win".equals(outcome)) {
             userEntity.setTotalWin(userEntity.getTotalWin() + 1);
         } else {
-            // 패배한 경우에 대한 로직 추가
         }
 
-        // 업데이트된 정보를 저장
         userRepository.save(userEntity);
     }
 
