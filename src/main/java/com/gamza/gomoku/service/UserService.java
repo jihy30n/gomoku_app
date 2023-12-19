@@ -23,6 +23,7 @@ import java.util.UUID;
 
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
@@ -53,14 +54,12 @@ public class UserService {
         UserEntity userEntity = userRepository.findByUserEmail(userEmail)
                 .orElseThrow(() -> new NotFoundException("User not found", ErrorCode.NOT_FOUND));
 
-        userEntity.setTotalPlay(userEntity.getTotalPlay() + 1);
+        userEntity.updateTotalPlay();
 
         if ("Win".equals(outcome)) {
-            userEntity.setTotalWin(userEntity.getTotalWin() + 1);
-        } else {
+            userEntity.updateTotalWin();
         }
 
-        userRepository.save(userEntity);
     }
 
     @Transactional
@@ -68,8 +67,8 @@ public class UserService {
         if (userRepository.existsByUserEmail(signupRequestDto.getUserEmail())) {
             throw new DuplicateException(ErrorCode.DUPLICATE_EMAIL.getMessage(), ErrorCode.DUPLICATE_EMAIL);
         }
-        UserEntity userEntity = new UserEntity().builder()
-                .uid(UUID.randomUUID())
+        UserEntity userEntity = UserEntity.builder()
+                .uid(UUID.randomUUID().toString())
                 .userName(signupRequestDto.getUserName())
                 .userEmail(signupRequestDto.getUserEmail())
                 .password(passwordEncoder.encode(signupRequestDto.getPassword()))

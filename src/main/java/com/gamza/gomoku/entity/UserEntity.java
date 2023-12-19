@@ -12,10 +12,9 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@Setter
 public class UserEntity extends BaseTimeEntity{
     @Id
-    private UUID uid;
+    private String uid;
     @Column(nullable = false,unique = true)
     private String userEmail;
     @Column(nullable = false,unique = true)
@@ -41,5 +40,11 @@ public class UserEntity extends BaseTimeEntity{
 
     public void setRefreshToken(String RT) {
         this.refreshToken = RT;
+    }
+    public void updateTotalWin() {
+        this.totalWin += 1;
+    }
+    public void updateTotalPlay() {
+        this.totalPlay += 1;
     }
 }

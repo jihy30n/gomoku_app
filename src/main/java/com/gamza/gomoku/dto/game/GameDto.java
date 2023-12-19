@@ -4,7 +4,6 @@ import lombok.Getter;
 
 @Getter
 public class GameDto {
-    private String Toek;
     private String outcome;
 
 }
